@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from apiapp.models import *
 from apiapp.serializers import *
 from rest_framework.response import Response
-
+from rest_framework import status
 
 @api_view(['GET'])
 def product_view(request):
@@ -33,3 +33,36 @@ def product_view(request):
                 'message': 'Product data not saved',
                 'data': serializer.errors
             })
+
+def product_detail_view(request, p_id):
+    if request.method == 'GET':
+        product_data = ProductModel.objects.get(id=p_id)
+        serializer = ProductSerializer(product_data)
+        return Response({
+            'sucess': True,
+            'message': 'Product data fetched successfully',
+            'data': serializer.data
+        })
+
+def product_details(request, p_id):
+    if request.method == 'GET':
+        try:
+            product_data = ProductModel.objects.get(id=p_id)
+            serializer = ProductSerializer(product_data)
+        except ProductModel.DoesNotExist:
+            return Response({
+                'success': False,
+                'message': 'Product data not found',
+                'data': {}
+            })
+        return Response({
+            'sucess': True,
+            'message': 'Product data fetched successfully',
+            'data': serializer.data
+        }, status = status.HTTP_200_Not_Found)  
+        serializers_data = ProductSerializer(product_data)
+        return Response({  
+            'success': True,
+            'message': 'Product data fetched successfully', 
+            'data': serializers_data.data
+        },status=status.HTTP_200_OK)    
