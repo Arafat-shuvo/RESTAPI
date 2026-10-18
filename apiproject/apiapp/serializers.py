@@ -2,7 +2,7 @@ from rest_framework import serializers
 from apiapp.models import *
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class StudentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProductModel
+        model = StudentModel
         fields = '__all__'

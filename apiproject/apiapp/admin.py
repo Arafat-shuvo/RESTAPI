@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apiapp.models import ProductModel
+from apiapp.models import StudentModel
 
 # Register your models here.
-admin.site.register(ProductModel)   
+admin.site.register(StudentModel)   
