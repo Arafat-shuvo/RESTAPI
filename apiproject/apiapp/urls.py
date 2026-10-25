@@ -1,6 +1,4 @@
-from django.urls import path
-from django.views.generic import RedirectView
-from apiapp.views import BlogDetailView, BlogListCreateView
+class BlogModel(model)
 
 urlpatterns = [
     path('blogs/', BlogListCreateView.as_view(), name='blog_view'),

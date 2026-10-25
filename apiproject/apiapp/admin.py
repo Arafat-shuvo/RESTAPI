@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apiapp.models import BlogModel
+from apiapp.models import *
 
 # Register your models here.
-admin.site.register(BlogModel)
+admin.site.register([CourseCatagory, SubjectModel])
